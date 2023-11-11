@@ -6,6 +6,9 @@
     <title>Page d'accueil</title>
 </head>
 <body>
-    <a href='insertion.php'> Inser </a>
+    <a href='insertion.php'> Inserer </a>
+    <br/>
+    <a href='affichage.php'> Affichage tous les clients </a>
+    <br/>
 </body>
 </html>

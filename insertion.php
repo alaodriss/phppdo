@@ -24,9 +24,11 @@
             /* for check if vide or not */
             if(!empty($nom) && !empty($prenom) && !empty($age) && !empty($adresse) && !empty($ville) && !empty($email)){
 
+                /* les requetes prepare */
                 $requete = $bdpdo->prepare('INSERT INTO clients(nom, prenom, age, adresse, ville, email) VALUES(:nom, :prenom, :age, :adresse, :ville, :email)');
                 
                 /* fait la lisaon entre les deuxs */
+                 /* les requetes nommee */
                 $requete->bindValue(':nom', $nom);
                 $requete->bindValue(':prenom', $prenom);
                 $requete->bindValue(':age', $age);
