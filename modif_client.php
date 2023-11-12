@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifcation des infos d'un client</title>
+    <title>Modification des infos d'un client</title>
 </head>
 <body>
 
@@ -26,15 +26,6 @@ if (!isset($_POST['modif'])) {
     $data = $result->fetch(PDO::FETCH_ASSOC);
 
     ?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modification des infos d'un client</title>
-    </head>
-    <body>
-
     <form action="modif_client.php" method="post">
         <fieldset>
             <legend><b>Modifier vos coordonnées</b></legend>
@@ -54,14 +45,47 @@ if (!isset($_POST['modif'])) {
 
             </table>
         </fieldset>
-    </form>
 
-    </body>
-    </html>
+        <!-- This input for updating client data via each id -->
+        <input type="hidden" name="id_client" value="<?= $id_clt ?>">
+
+    </form>
 
     <?php
     $result->closeCursor();
+
+} elseif(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['age']) && isset($_POST['adresse']) && isset($_POST['ville']) && isset($_POST['email'])){
+   $nom = $_POST['nom'];
+   $prenom = $_POST['prenom'];
+   $age = $_POST['age'];
+   $adresse = $_POST['adresse'];
+   $ville = $_POST['ville'];
+   $email = $_POST['email'];
+
+   $id_clt = $_POST['id_client'];
+
+   $requete = $bdpdo->prepare("UPDATE clients SET nom=:nom, prenom=:prenom, age=:age, adresse=:adresse, ville=:ville, email=:email WHERE id=:id_client");
+
+   $requete->bindValue(':nom', $nom);
+   $requete->bindValue(':prenom', $prenom);
+   $requete->bindValue(':age', $age);
+   $requete->bindValue(':adresse', $adresse);
+   $requete->bindValue(':ville', $ville);
+   $requete->bindValue(':email', $email);
+   $requete->bindValue(':id_client', $id_clt);
+
+   $result = $requete->execute();
+
+   if(!$result){
+    echo "Un problème est survenu";
+   } else {
+    echo "Vos modifications ont bien été effectuées";
+   }
+   
 } else {
-    // Handle the case when the form is submitted
+    echo "Modification non correcte";
 }
 ?>
+
+</body>
+</html>
