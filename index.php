@@ -10,7 +10,7 @@
     <br/>
     <a href='affichage.php'> Affichage tous les clients </a>
     <br/>
-    <a href='from_modif_client.php'> Modifier Client </a>
+    <a href='form_modif_client.php'> Modifier Client </a>
     <br/>
 </body>
 </html>
